@@ -628,7 +628,7 @@ namespace EDDiscovery
 
                 dlluserpanelsregisteredlist = EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("DLLUserPanelsRegisteredList", "");
 
-                Enum.TryParse<WebExternalDataLookup>(EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("WebLookup", "None"), true, out weblookup);
+                Enum.TryParse<WebExternalDataLookup>(EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("WebLookup", "SpanshThenEDSM"), true, out weblookup);
             }
             catch (Exception ex)
             {
