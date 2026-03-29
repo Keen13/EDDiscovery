@@ -106,7 +106,7 @@ namespace EDDiscovery.UserControls
         {
             extPictureBox.ClearImageList();
 
-            EliteDangerousCore.StarScan2.SystemNode sysnode = lasthe != null ? await DiscoveryForm.History.StarScan2.FindSystemAsync(lasthe.System, WebExternalDataLookup.None) : null;
+            EliteDangerousCore.StarScan2.SystemNode sysnode = lasthe != null ? await DiscoveryForm.History.StarScan2.FindSystemAsync(lasthe.System, false) : null;
             if (IsClosed || sysnode == null || lasthe == null)
             {
                 extPictureBox.Render();

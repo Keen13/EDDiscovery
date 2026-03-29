@@ -751,7 +751,7 @@ namespace EDDiscovery.UserControls
                             long? systemid = json["systemid"].LongNull();
                             WebExternalDataLookup wdl = json["weblookup"].EnumStr<WebExternalDataLookup>(WebExternalDataLookup.None, true);
                             var sc = new SystemClass(system, systemid);
-                            var node = await hl.StarScan2.FindSystemAsync(sc, wdl);
+                            var node = await hl.StarScan2.FindSystemAsync(sc, wdl != WebExternalDataLookup.None);
                             if (IsClosed)
                                 return;
 

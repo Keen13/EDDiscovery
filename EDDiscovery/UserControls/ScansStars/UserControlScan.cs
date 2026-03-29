@@ -372,7 +372,7 @@ namespace EDDiscovery.UserControls
             if (showing_system == null)
                 return;
 
-            var sysnode = DiscoveryForm.History.StarScan2.FindSystemSynchronous(showing_system);
+            var sysnode = DiscoveryForm.History.StarScan2.FindSystemSynchronous(showing_system,false);
 
             if ( sysnode != null )
             {

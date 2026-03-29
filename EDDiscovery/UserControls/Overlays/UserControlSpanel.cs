@@ -325,7 +325,7 @@ namespace EDDiscovery.UserControls
                         if (zoneson && last != null)
                         {
                             var scan = hl.StarScan2;
-                            var sn = await scan.FindSystemAsync(last.System, EliteDangerousCore.WebExternalDataLookup.All);    // web lookup
+                            var sn = await scan.FindSystemAsync(last.System, true);    // web lookup
                             var star = sn?.GetStarsScanned().FirstOrDefault();
 
                             StringBuilder sb = new StringBuilder();

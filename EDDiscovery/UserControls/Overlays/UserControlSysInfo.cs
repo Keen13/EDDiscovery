@@ -393,7 +393,7 @@ namespace EDDiscovery.UserControls
 #endif
                 bool wasdiscovered = true;
 
-                var ss = DiscoveryForm.History.StarScan2.FindSystemSynchronous(he.System);       // find system no web lookup 
+                var ss = DiscoveryForm.History.StarScan2.FindSystemSynchronous(he.System, false);       // find system no web lookup 
                 var firststar = ss?.GetStarsScanned().FirstOrDefault();
                 if ( firststar != null )
                 {
@@ -597,7 +597,7 @@ namespace EDDiscovery.UserControls
 
                             if (lastdestination.BodyID.HasValue)
                             {
-                                ss = DiscoveryForm.History.StarScan2.FindSystemSynchronous(DiscoveryForm.History.GetLast.System);
+                                ss = DiscoveryForm.History.StarScan2.FindSystemSynchronous(DiscoveryForm.History.GetLast.System, false);
                                 var body = ss?.FindBody(lastdestination.BodyID.Value);
 
                                 if (body != null)

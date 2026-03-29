@@ -217,7 +217,6 @@ namespace EDDiscovery.UserControls
             this.edsmSpanshButton.Location = new System.Drawing.Point(220, 1);
             this.edsmSpanshButton.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.edsmSpanshButton.Name = "edsmSpanshButton";
-            this.edsmSpanshButton.SettingsSplittingChar = ';';
             this.edsmSpanshButton.Size = new System.Drawing.Size(28, 28);
             this.edsmSpanshButton.TabIndex = 30;
             this.edsmSpanshButton.UseVisualStyleBackColor = true;

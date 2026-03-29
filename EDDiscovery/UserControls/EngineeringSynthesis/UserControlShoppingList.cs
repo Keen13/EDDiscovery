@@ -180,7 +180,7 @@ namespace EDDiscovery.UserControls
                 {
                     // tbd spansh - but the right click UI is horrible, when we reengineer it, we will fix
 
-                    last_sn = await DiscoveryForm.History.StarScan2.FindSystemAsync(last_he.System, useEDSMForSystemAvailability ? EliteDangerousCore.WebExternalDataLookup.EDSM : EliteDangerousCore.WebExternalDataLookup.None);
+                    last_sn = await DiscoveryForm.History.StarScan2.FindSystemAsync(last_he.System, useEDSMForSystemAvailability);
 
                     if (last_he.Status.IsLandedInShipOrSRV && last_sn != null )       // if found node, and landed
                     {

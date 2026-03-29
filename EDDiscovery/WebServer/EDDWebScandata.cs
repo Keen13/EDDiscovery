@@ -76,10 +76,7 @@ namespace EDDiscovery.WebServer
 
                     HistoryEntry he = hl[entry];
 
-                    var lookup = edsm ? (spansh ? EliteDangerousCore.WebExternalDataLookup.SpanshThenEDSM : WebExternalDataLookup.EDSM) :
-                                 spansh ? EliteDangerousCore.WebExternalDataLookup.Spansh : EliteDangerousCore.WebExternalDataLookup.None;
-
-                    var scannode = discoveryform.History.StarScan2.FindSystemSynchronous(he.System, lookup);  
+                    var scannode = discoveryform.History.StarScan2.FindSystemSynchronous(he.System, edsm || spansh);  
 
                     var bodylist = scannode?.Bodies().ToList();       // may be null
 

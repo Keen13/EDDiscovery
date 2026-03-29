@@ -42,7 +42,7 @@ namespace EDDiscovery.UserControls
 
         protected override void Init()
         {
-            dataGridView.WebLookup = EliteDangerousCore.WebExternalDataLookup.All;
+            dataGridView.WebLookup = true;
             dataGridView.MakeDoubleBuffered();
             dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView.RowTemplate.Height = Font.ScalePixels(26);

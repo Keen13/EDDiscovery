@@ -54,7 +54,7 @@
             this.numberBoxIntCargo = new ExtendedControls.NumberBoxInt();
             this.textBox_From = new ExtendedControls.ExtTextBoxAutoComplete();
             this.textBox_FromX = new ExtendedControls.NumberBoxDouble();
-            this.edsmSpanshButton = new EDDiscovery.UserControls.EDSMSpanshButton();
+            this.edsmSpanshButton = new EDDiscovery.UserControls.EDSMSpanshSelectionButton();
             this.labelFrom = new System.Windows.Forms.Label();
             this.textBox_FromY = new ExtendedControls.NumberBoxDouble();
             this.textBox_ToName = new ExtendedControls.ExtTextBox();
@@ -586,16 +586,12 @@
             // 
             // edsmSpanshButton
             // 
-            this.edsmSpanshButton.BackColor2 = System.Drawing.Color.Red;
-            this.edsmSpanshButton.ButtonDisabledScaling = 0.5F;
-            this.edsmSpanshButton.GradientDirection = 90F;
             this.edsmSpanshButton.Image = global::EDDiscovery.Icons.Controls.EDSMSpansh;
             this.edsmSpanshButton.Location = new System.Drawing.Point(796, 85);
             this.edsmSpanshButton.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.edsmSpanshButton.MouseOverScaling = 1.3F;
             this.edsmSpanshButton.MouseSelectedScaling = 1.3F;
             this.edsmSpanshButton.Name = "edsmSpanshButton";
-            this.edsmSpanshButton.SettingsSplittingChar = ';';
             this.edsmSpanshButton.Size = new System.Drawing.Size(28, 28);
             this.edsmSpanshButton.TabIndex = 70;
             this.edsmSpanshButton.UseVisualStyleBackColor = true;
@@ -1473,7 +1469,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private ExtendedControls.ExtCheckBox checkBox_FsdBoost;
         private System.Windows.Forms.ToolStripMenuItem showScanToolStripMenuItem;
-        private EDSMSpanshButton edsmSpanshButton;
+        private EDSMSpanshSelectionButton edsmSpanshButton;
         private ExtendedControls.ExtButton extButtonSpanshRoadToRiches;
         private ExtendedControls.ExtGroupBox groupBoxInternal;
         private ExtendedControls.ExtGroupBox groupBoxPara;

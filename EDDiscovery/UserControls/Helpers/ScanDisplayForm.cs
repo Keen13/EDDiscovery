@@ -24,7 +24,7 @@ namespace EDDiscovery.UserControls
     {
         // tag can be a Isystem or an He.. output depends on it.
         public static async void ShowScanOrMarketForm(Form parent, Object tag, HistoryList hl, float opacity = 1, Color? keycolour = null, 
-                                WebExternalDataLookup? forcedlookup = null)     
+                                bool? forcedlookup = null)     
         {
             if (tag == null)
                 return;
@@ -64,15 +64,15 @@ namespace EDDiscovery.UserControls
                 {
                     edsmSpanshButton = new EDSMSpanshButton();
                     edsmSpanshButton.Init(db, "EDSMSpansh", "");
-                    edsmSpanshButton.ValueChanged += (s, e) =>
+                    edsmSpanshButton.CheckedChanged += (s, e) =>
                     {
                         nodedata = hl.StarScan2.FindSystemSynchronous(sys, edsmSpanshButton.WebLookup);    // look up system, unfort must be sync due to limitations in c#
-                        sd.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup != WebExternalDataLookup.None;
+                        sd.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup;
                         sd.DrawSystem(nodedata, null, hl.MaterialCommoditiesMicroResources.GetLast(), filter: filterbut.BodyFilters);
                     };
                 }
 
-                sd.SystemDisplay.ShowWebBodies = (forcedlookup.HasValue ? forcedlookup.Value : edsmSpanshButton.WebLookup) != WebExternalDataLookup.None;
+                sd.SystemDisplay.ShowWebBodies = forcedlookup.HasValue ? forcedlookup.Value : edsmSpanshButton.WebLookup;
                 int selsize = (int)(ExtendedControls.Theme.Current.GetFont.Height / 10.0f * 48.0f);
                 sd.SystemDisplay.SetSize( selsize );
                 sd.Size = maincontentsize;

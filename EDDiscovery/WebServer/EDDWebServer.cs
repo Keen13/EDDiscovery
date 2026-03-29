@@ -69,7 +69,7 @@ namespace EDDiscovery.WebServer
     //                                                  : previous = array of previous missions, each one an array containing mission data
     // Push responsetype="missionschanged" when history has been refreshed
     //-------------------------------------------------------------------------------------------------------------------
-    // Query requesttype=scandata : fields entry number, "edsm" true/false, "spansh" true/false (EDD 17.0)
+    // Query requesttype=scandata : fields entry number, "edsm" true/false, "spansh" true/false (EDD 17.0) either from 20.0 means use web lookup, not its type
     //          responsetype = entry, objectlist..          : entry = -1 none, or entry number. See code for fields
     //
     // Push responsetype=scandatachanged                : indicate scan data has changed

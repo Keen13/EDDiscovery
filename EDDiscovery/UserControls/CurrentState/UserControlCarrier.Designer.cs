@@ -391,7 +391,6 @@
             this.dataGridViewItinerary.SingleRowSelect = true;
             this.dataGridViewItinerary.Size = new System.Drawing.Size(815, 540);
             this.dataGridViewItinerary.TabIndex = 0;
-            this.dataGridViewItinerary.WebLookup = EliteDangerousCore.WebExternalDataLookup.None;
             // 
             // colItinDate
             // 

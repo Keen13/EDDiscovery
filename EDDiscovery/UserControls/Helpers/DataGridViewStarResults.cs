@@ -23,7 +23,7 @@ namespace EDDiscovery.UserControls.Search
 {
     public class DataGridViewStarResults : BaseUtils.DataGridViewColumnControl
     {
-        public EliteDangerousCore.WebExternalDataLookup WebLookup { get; set; }
+        public bool WebLookup { get; set; }
         public Action<HistoryEntry> GotoEntryClicked = null;
 
         private EDDiscoveryForm discoveryform;

@@ -200,7 +200,7 @@ namespace EDDiscovery.UserControls
 
             if (lasthe != null && lasthe.Status.HasBodyID && lasthe.Status.BodyType == BodyDefinitions.BodyType.Planet)
             {
-                var data = DiscoveryForm.History.StarScan2.FindSystemSynchronous(lasthe.System);
+                var data = DiscoveryForm.History.StarScan2.FindSystemSynchronous(lasthe.System, false);
                 var node = data?.FindBody(lasthe.Status.BodyID.Value);
 
                 if (node!=null)

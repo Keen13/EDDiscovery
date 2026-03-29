@@ -196,8 +196,7 @@ namespace EDDiscovery
         }
 
         // Note ASYNC so we must use data return method
-        // 14/1/25 bool means spansh then edsm
-        private async void DLLRequestScanData(object requesttag, object usertag, string systemname, bool spanshthenedsmlookup)
+        private async void DLLRequestScanData(object requesttag, object usertag, string systemname, bool weblookup)
         {
             System.Diagnostics.Trace.Assert(Application.MessageLoop);       // must be
 
@@ -215,12 +214,8 @@ namespace EDDiscovery
 
                     var sysclass = new SystemClass(syslookup);
 
-                    WebExternalDataLookup wlu = spanshthenedsmlookup ? EliteDangerousCore.WebExternalDataLookup.SpanshThenEDSM : EliteDangerousCore.WebExternalDataLookup.None;
-
-                   //wlu = WebExternalDataLookup.EDSM; //debug
-
                     // async lookup
-                    var snode = await sc.FindSystemAsync(sysclass, wlu);
+                    var snode = await sc.FindSystemAsync(sysclass, weblookup);
 
                     if (snode != null)
                     {
@@ -256,10 +251,8 @@ namespace EDDiscovery
                 {
                     var sc = History.StarScan2;
 
-                    WebExternalDataLookup wlu = weblookup == 3 ? WebExternalDataLookup.SpanshThenEDSM : weblookup == 2 ? WebExternalDataLookup.Spansh :
-                                                    weblookup == 1 ? WebExternalDataLookup.EDSM : WebExternalDataLookup.None;
                     // async lookup
-                    var snode = await sc.FindSystemAsync(sysc, wlu);
+                    var snode = await sc.FindSystemAsync(sysc, weblookup != 0);
 
                     if (snode != null)
                     {

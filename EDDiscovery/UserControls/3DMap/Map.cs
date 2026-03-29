@@ -615,7 +615,7 @@ namespace EDDiscovery.UserControls.Map3D
                         Click = (s1) =>
                         {
                             ScanDisplayForm.ShowScanOrMarketForm(parent.FindForm(), rightclickmenunld.SystemC,  parent.DiscoveryForm.History, 0.8f, 
-                                            System.Drawing.Color.Purple, WebExternalDataLookup.SpanshThenEDSM);
+                                            System.Drawing.Color.Purple, true);
                         }
                     },
                     new GLMenuItem("RCMViewSpansh", "View on Spansh")

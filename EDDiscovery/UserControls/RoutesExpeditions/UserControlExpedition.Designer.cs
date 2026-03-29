@@ -104,7 +104,7 @@ namespace EDDiscovery.UserControls
             this.buttonExtExport = new ExtendedControls.ExtButton();
             this.extButtonShow3DMap = new ExtendedControls.ExtButton();
             this.extButtonDisplayFilters = new ExtendedControls.ExtButton();
-            this.edsmSpanshButton = new EDDiscovery.UserControls.EDSMSpanshButton();
+            this.edsmSpanshButton = new EDDiscovery.UserControls.EDSMSpanshSelectionButton();
             this.extCheckBoxWordWrap = new ExtendedControls.ExtCheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -950,16 +950,12 @@ namespace EDDiscovery.UserControls
             // 
             // edsmSpanshButton
             // 
-            this.edsmSpanshButton.BackColor2 = System.Drawing.Color.Red;
-            this.edsmSpanshButton.ButtonDisabledScaling = 0.5F;
-            this.edsmSpanshButton.GradientDirection = 90F;
             this.edsmSpanshButton.Image = global::EDDiscovery.Icons.Controls.EDSMSpansh;
             this.edsmSpanshButton.Location = new System.Drawing.Point(445, 1);
             this.edsmSpanshButton.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.edsmSpanshButton.MouseOverScaling = 1.3F;
             this.edsmSpanshButton.MouseSelectedScaling = 1.3F;
             this.edsmSpanshButton.Name = "edsmSpanshButton";
-            this.edsmSpanshButton.SettingsSplittingChar = ';';
             this.edsmSpanshButton.Size = new System.Drawing.Size(28, 28);
             this.edsmSpanshButton.TabIndex = 30;
             this.edsmSpanshButton.UseVisualStyleBackColor = true;
@@ -1082,7 +1078,7 @@ namespace EDDiscovery.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn Stars;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHistoryNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn Info;
-        private EDSMSpanshButton edsmSpanshButton;
+        private EDSMSpanshSelectionButton edsmSpanshButton;
         private System.Windows.Forms.ToolStripMenuItem viewSystemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewOnSpanshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewOnEDSMToolStripMenuItem;

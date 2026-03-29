@@ -183,7 +183,7 @@ namespace EDDiscovery.UserControls
             DiscoveryForm.OnThemeChanged += ClearDisplayFontJournalCAPI;
 
             dataGridViewItinerary.Init(DiscoveryForm);      // set up 
-            dataGridViewItinerary.WebLookup = EliteDangerousCore.WebExternalDataLookup.All;
+            dataGridViewItinerary.WebLookup = true;
         }
 
         protected override void LoadLayout()

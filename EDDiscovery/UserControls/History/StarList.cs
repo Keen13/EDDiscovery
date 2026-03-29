@@ -14,6 +14,7 @@
 
 using EliteDangerousCore;
 using EliteDangerousCore.EDSM;
+using EliteDangerousCore.Spansh;
 using ExtendedControls;
 using System;
 using System.Collections.Generic;
@@ -94,7 +95,7 @@ namespace EDDiscovery.UserControls
             searchtimer = new Timer() { Interval = 500 };
             searchtimer.Tick += Searchtimer_Tick;
             autoupdateedsm = new Timer() { Interval = 2000 };
-            autoupdateedsm.Tick += Autoupdateedsm_Tick;
+            autoupdateedsm.Tick += Autoupdatewebdata_Tick;
             todotimer = new Timer() { Interval = 20 };
             todotimer.Tick += Todotimer_Tick;
 
@@ -223,7 +224,7 @@ namespace EDDiscovery.UserControls
                 {
                     if (rowpresent != null)       // only need to do something if its displayed
                     {
-                        var node = DiscoveryForm.History.StarScan2.FindSystemSynchronous(rowhe.System); // may be null
+                        var node = DiscoveryForm.History.StarScan2.FindSystemSynchronous(rowhe.System, false); // may be null
                         string info = Infoline(rowhe.System, node);  // lookup node, using star name, no EDSM lookup.
                         rowpresent.Cells[3].Value = info;   // update info
                         rowpresent.Cells[4].Value = node?.ScanValue(true).ToString("N0") ?? "0"; // update scan value
@@ -346,7 +347,7 @@ namespace EDDiscovery.UserControls
             //string debugt = item.Journalid + "  " + item.System.id_edsm + " " + item.System.GetHashCode() + " "; // add on for debug purposes to a field below
 
             string time = EDDConfig.Instance.ConvertTimeToSelectedFromUTC(he.EventTimeUTC).ToString();
-            var node = DiscoveryForm.History.StarScan2.FindSystemSynchronous(he.System); // may be null
+            var node = DiscoveryForm.History.StarScan2.FindSystemSynchronous(he.System, false); // may be null
 
             string visits = DiscoveryForm.History.Visits(he.System.Name).ToString();
             string info = Infoline(he.System, node);  // lookup node, using star name, no EDSM lookup.
@@ -506,14 +507,18 @@ namespace EDDiscovery.UserControls
         public async void CheckWeb(DataGridViewRow row)
         {
             HistoryEntry he = row.Tag as HistoryEntry;
+            System.Diagnostics.Debug.WriteLine($"StarList check web on {row.Index} {he.System.Name}");
             var node = await DiscoveryForm.History.StarScan2.FindSystemAsync(he.System, edsmSpanshButton.WebLookup);  
             row.Cells[Columns.OtherInformation].Value = Infoline(he.System,node);
             row.Cells[Columns.SystemValue].Value = node?.ScanValue(true).ToString("N0") ?? "";
         }
 
-        private void Autoupdateedsm_Tick(object sender, EventArgs e)            // tick tock to get edsm data very slowly!
+        private void Autoupdatewebdata_Tick(object sender, EventArgs e)            // tick tock to get edsm data very slowly!
         {
-            if (dataGridViewStarList.FirstDisplayedCell != null && edsmSpanshButton.IsAnySet)
+            var configweblookup = EDDConfig.Instance.WebLookup;
+
+            // no point doing this if config web lookup is off, and if we don't want it
+            if (dataGridViewStarList.FirstDisplayedCell != null && configweblookup != WebExternalDataLookup.None && edsmSpanshButton.IsAnySet)
             {
                 int top = dataGridViewStarList.FirstDisplayedCell.RowIndex;
                 if (top != autoupdaterowstart)
@@ -537,15 +542,15 @@ namespace EDDiscovery.UserControls
 
                     HistoryEntry he = rw.Tag as HistoryEntry;
                         
-                    if (!EDSMClass.HasBodyLookupOccurred(he.System))       // this tells us if a body lookup has occurred
+                    if (EDSMClass.HasBodyLookupOccurred(he.System) || SpanshClass.HasBodyLookupOccurred(he.System))       // this tells us if a body lookup has occurred
                     {
-                        System.Diagnostics.Debug.WriteLine("StarList EDSM Update row" + row);
-                        CheckWeb(rw);
-                        break;
+                        System.Diagnostics.Debug.WriteLine("StarList Skip row as already checked " + row);
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine("StarList Skip row as already checked " + row);
+                        System.Diagnostics.Debug.WriteLine($"StarList AutoUpdate check web for row {rw.Index} {he.System.Name}");
+                        CheckWeb(rw);
+                        break;
                     }
                 }
             }

@@ -242,16 +242,12 @@
             // 
             // edsmSpanshButton
             // 
-            this.edsmSpanshButton.BackColor2 = System.Drawing.Color.Red;
-            this.edsmSpanshButton.ButtonDisabledScaling = 0.5F;
-            this.edsmSpanshButton.GradientDirection = 90F;
             this.edsmSpanshButton.Image = global::EDDiscovery.Icons.Controls.EDSMSpansh;
             this.edsmSpanshButton.Location = new System.Drawing.Point(111, 28);
             this.edsmSpanshButton.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.edsmSpanshButton.MouseOverScaling = 1.3F;
             this.edsmSpanshButton.MouseSelectedScaling = 1.3F;
             this.edsmSpanshButton.Name = "edsmSpanshButton";
-            this.edsmSpanshButton.SettingsSplittingChar = ';';
             this.edsmSpanshButton.Size = new System.Drawing.Size(28, 28);
             this.edsmSpanshButton.TabIndex = 30;
             this.edsmSpanshButton.UseVisualStyleBackColor = true;

@@ -12,6 +12,7 @@
  * governing permissions and limitations under the License.
  */
 
+using EliteDangerousCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,31 +42,7 @@ namespace EDDiscovery
             }
         }
 
-        #region Discrete Controls
-
-        private bool useNotifyIcon = false;
-        private bool orderrowsinverted = false;
-        private bool minimizeToNotifyIcon = false;
-        private bool keepOnTop = false; /**< Whether to keep the windows on top or not */
-        private int displayTimeFormat = 0; //0=local,1=utc,2=elite time
-        private System.Windows.Forms.Keys clickthrukey = System.Windows.Forms.Keys.ShiftKey;
-        private string defaultwavedevice = "Default";
-        private string defaultvoicedevice = "Default";
-        private bool systemdbdownload = true;
-        private int fullhistoryloaddaylimit = 0;     //0 means not in use
-        private string language = "Auto";
-        private bool drawduringresize = true;
-        private bool sortpanelsalpha = false;
-        private string essentialeventtype = "Default";
-        private string coriolisURL = "";
-        private string eddshipyardURL = "";
-        private string edsmfullsystemsurl = "";
-        private string spanshsystemsurl = "";
-        private int webserverport = 6502;
-        private bool webserverenable = false;
-        private string dlluserpanelsregisteredlist = "";
-        Dictionary<string, string> captainslogtaglist;
-        Dictionary<string, string> bookmarkstaglist;
+        #region Config
 
         /// <summary>
         /// Controls whether or not a system notification area (systray) icon will be shown.
@@ -303,10 +280,10 @@ namespace EDDiscovery
             }
             set
             {
-                if (systemdbdownload != value )
+                if (systemdbdownload != value)
                 {
                     systemdbdownload = value;
-                    EliteDangerousCore.DB.UserDatabase.Instance.PutSetting("EDSMEDDBDownloadData", value); 
+                    EliteDangerousCore.DB.UserDatabase.Instance.PutSetting("EDSMEDDBDownloadData", value);
                 }
             }
         }
@@ -465,7 +442,7 @@ namespace EDDiscovery
         public const string TagSplitStringCL = ";"; // keeping this so its backwards compatible
 
         // get/set as tag list <separ>
-        public string CaptainsLogTags       
+        public string CaptainsLogTags
         {
             get
             {
@@ -479,7 +456,7 @@ namespace EDDiscovery
         }
 
         // Image has Tag as its logical name (EDDICONS path)
-        public Dictionary<string, string> CaptainsLogTagDictionary 
+        public Dictionary<string, string> CaptainsLogTagDictionary
         {
             get
             {
@@ -503,7 +480,7 @@ namespace EDDiscovery
         public const string TagSplitStringBK = "\u2345";
 
         // get/set as taglist <separ>
-        public string BookmarkTags       
+        public string BookmarkTags
         {
             get
             {
@@ -512,7 +489,7 @@ namespace EDDiscovery
             }
             set
             {
-                SetImageDict(value, ref bookmarkstaglist, "BookmarkTagNames",TagSplitStringBK);
+                SetImageDict(value, ref bookmarkstaglist, "BookmarkTagNames", TagSplitStringBK);
             }
         }
 
@@ -584,6 +561,19 @@ namespace EDDiscovery
             }
         }
 
+        public WebExternalDataLookup WebLookup
+        {
+            get
+            {
+                return weblookup;
+            }
+            set
+            {
+                weblookup = value;
+                EliteDangerousCore.DB.UserDatabase.Instance.PutSetting("WebLookup", WebLookup.ToString());
+            }
+        }
+
         // return panelid of ID, or -1 if not found. Allow creation if required
         public int FindCreatePanelID(string id, bool createnew = true)
         {
@@ -591,7 +581,7 @@ namespace EDDiscovery
             int indexof = Array.IndexOf(registeredpanels, id);  // find if there
             if (indexof >= 0)      // if there
                 return PanelInformation.DLLUserPanelsStart + indexof;   // return it
-            if ( createnew )
+            if (createnew)
             {
                 DLLUserPanelsRegisteredList = DLLUserPanelsRegisteredList.AppendPrePad(id, UserPanelSplitStr);  // write updated string back
                 return PanelInformation.DLLUserPanelsStart + registeredpanels.Length;
@@ -603,7 +593,6 @@ namespace EDDiscovery
         #endregion
 
         #region Update at start
-
 
         public void Update()     // call at start to populate above
         {
@@ -638,6 +627,8 @@ namespace EDDiscovery
                 webserverenable = EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("WebServerEnable", false);
 
                 dlluserpanelsregisteredlist = EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("DLLUserPanelsRegisteredList", "");
+
+                Enum.TryParse<WebExternalDataLookup>(EliteDangerousCore.DB.UserDatabase.Instance.GetSetting("WebLookup", "None"), true, out weblookup);
             }
             catch (Exception ex)
             {
@@ -671,6 +662,35 @@ namespace EDDiscovery
             string setting = string.Join(separ, list) + separ;
             EliteDangerousCore.DB.UserDatabase.Instance.PutSetting(settingname, setting);
         }
+
+        #endregion
+
+        #region privates
+
+        private bool useNotifyIcon = false;
+        private bool orderrowsinverted = false;
+        private bool minimizeToNotifyIcon = false;
+        private bool keepOnTop = false; /**< Whether to keep the windows on top or not */
+        private int displayTimeFormat = 0; //0=local,1=utc,2=elite time
+        private System.Windows.Forms.Keys clickthrukey = System.Windows.Forms.Keys.ShiftKey;
+        private string defaultwavedevice = "Default";
+        private string defaultvoicedevice = "Default";
+        private bool systemdbdownload = true;
+        private int fullhistoryloaddaylimit = 0;     //0 means not in use
+        private string language = "Auto";
+        private bool drawduringresize = true;
+        private bool sortpanelsalpha = false;
+        private string essentialeventtype = "Default";
+        private string coriolisURL = "";
+        private string eddshipyardURL = "";
+        private string edsmfullsystemsurl = "";
+        private string spanshsystemsurl = "";
+        private int webserverport = 6502;
+        private bool webserverenable = false;
+        private string dlluserpanelsregisteredlist = "";
+        Dictionary<string, string> captainslogtaglist;
+        Dictionary<string, string> bookmarkstaglist;
+        WebExternalDataLookup weblookup;
 
         #endregion
     }

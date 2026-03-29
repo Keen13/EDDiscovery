@@ -66,10 +66,7 @@ namespace EDDiscovery.WebServer
 
                 discoveryform.Invoke((MethodInvoker)delegate
                 {
-                    var lookup = checkEDSM ? (checkSPANSH ? EliteDangerousCore.WebExternalDataLookup.SpanshThenEDSM : WebExternalDataLookup.EDSM) :
-                                checkSPANSH ? EliteDangerousCore.WebExternalDataLookup.Spansh : EliteDangerousCore.WebExternalDataLookup.None;
-
-                    var sn = hl.StarScan2.FindSystemSynchronous(hl.EntryOrder()[entry].System, lookup);
+                    var sn = hl.StarScan2.FindSystemSynchronous(hl.EntryOrder()[entry].System, checkEDSM || checkSPANSH);
 
                     if (sn != null)
                     {

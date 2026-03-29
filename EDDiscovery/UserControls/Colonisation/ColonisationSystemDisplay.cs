@@ -55,11 +55,11 @@ namespace EDDiscovery.UserControls.Colonisation
             edsmSpanshButton.ValueChanged += (s, e) =>
             {
                 nodedata = hl.StarScan2.FindSystemSynchronous(SystemData.System, edsmSpanshButton.WebLookup);    // look up system, unfort must be sync due to limitations in c#
-                sd.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup != WebExternalDataLookup.None;
+                sd.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup;
                 sd.DrawSystem(nodedata, null, hl.MaterialCommoditiesMicroResources.GetLast(), filter: filterbut.BodyFilters);
             };
 
-            scanDisplayUserControl.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup != WebExternalDataLookup.None;
+            scanDisplayUserControl.SystemDisplay.ShowWebBodies = edsmSpanshButton.WebLookup;
             int selsize = (int)(ExtendedControls.Theme.Current.GetFont.Height / 10.0f * 48.0f);
             sd.SystemDisplay.SetSize(selsize);
 

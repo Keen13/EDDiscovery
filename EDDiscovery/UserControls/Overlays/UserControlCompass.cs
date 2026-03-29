@@ -405,7 +405,7 @@ namespace EDDiscovery.UserControls
                     }
                 }
 
-                var sysnode = DiscoveryForm.History.StarScan2.FindSystemSynchronous(current_sys);
+                var sysnode = DiscoveryForm.History.StarScan2.FindSystemSynchronous(current_sys, false);
 
                 if ( sysnode != null)
                 {

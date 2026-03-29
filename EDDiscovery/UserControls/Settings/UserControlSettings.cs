@@ -29,7 +29,8 @@ namespace EDDiscovery.UserControls
 {
     public partial class UserControlSettings : UserControlCommonBase
     {
-        Timer tm = new Timer();
+        private Timer tm = new Timer();
+        private WebExternalDataLookup[] weblookuplist = new WebExternalDataLookup[] { WebExternalDataLookup.None, WebExternalDataLookup.Spansh, WebExternalDataLookup.SpanshThenEDSM, WebExternalDataLookup.EDSM, WebExternalDataLookup.All };
 
         public UserControlSettings()
         {
@@ -135,6 +136,11 @@ namespace EDDiscovery.UserControls
             extCheckBoxWebServerEnable.Checked = false;
             extButtonTestWeb.Enabled = numberBoxLongPortNo.Enabled = false;
             numberBoxLongPortNo.Value = EDDConfig.Instance.WebServerPort;
+
+            extComboBoxWebLookup.Items.AddRange(new string[] { "None".Tx(), "Spansh", "Spansh -> EDSM", "EDSM", "All".Tx() });
+            var i = Array.IndexOf(weblookuplist, EDDConfig.Instance.WebLookup);
+            extComboBoxWebLookup.SelectedIndex = i < 0 ? 0 : i;
+            extComboBoxWebLookup.SelectedIndexChanged += ExtComboBoxWebLookup_SelectedIndexChanged;
 
             tm.Tick += PeriodicCheck;
             tm.Interval = 1000;
@@ -815,6 +821,11 @@ namespace EDDiscovery.UserControls
         private void extButtonDLLConfigure_Click(object sender, EventArgs e)
         {
             DiscoveryForm.DLLManager.DLLConfigure(this.FindForm(), this.FindForm().Icon);
+        }
+
+        private void ExtComboBoxWebLookup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EDDConfig.Instance.WebLookup = weblookuplist[extComboBoxWebLookup.SelectedIndex];
         }
 
     }

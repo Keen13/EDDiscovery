@@ -362,7 +362,7 @@ namespace EDDiscovery.UserControls
             this.dataGridView.SingleRowSelect = true;
             this.dataGridView.Size = new System.Drawing.Size(724, 650);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.WebLookup = EliteDangerousCore.WebExternalDataLookup.None;
+            this.dataGridView.WebLookup = false;
             this.dataGridView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView_SortCompare);
             // 
             // ColumnDate

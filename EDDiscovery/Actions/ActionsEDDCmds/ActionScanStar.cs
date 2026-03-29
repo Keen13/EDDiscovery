@@ -75,9 +75,6 @@ namespace EDDiscovery.Actions
                     cmdname = sp.NextQuotedWord();
                 }
 
-                var lookup = edsm ? (spansh ? EliteDangerousCore.WebExternalDataLookup.SpanshThenEDSM : WebExternalDataLookup.EDSM) :
-                    spansh ? EliteDangerousCore.WebExternalDataLookup.Spansh : EliteDangerousCore.WebExternalDataLookup.None;
-
                 if (cmdname != null)
                 {
                     string bodyname = sp.NextQuotedWord();      // may be null
@@ -90,7 +87,7 @@ namespace EDDiscovery.Actions
 
                     var system = systemaddr > 0 ? new SystemClass(systemaddr.Value) : new SystemClass(cmdname);      // by name or by system address
 
-                    var sn = scan.FindSystemSynchronous(system, lookup);
+                    var sn = scan.FindSystemSynchronous(system, edsm || spansh);
 
                     System.Globalization.CultureInfo ct = System.Globalization.CultureInfo.InvariantCulture;
 

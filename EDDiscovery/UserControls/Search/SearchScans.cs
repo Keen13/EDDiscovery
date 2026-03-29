@@ -51,7 +51,7 @@ namespace EDDiscovery.UserControls
 
         protected override void Init()
         {
-            dataGridView.WebLookup = EliteDangerousCore.WebExternalDataLookup.None; // for this, only our data is shown
+            dataGridView.WebLookup = false; // for this, only our data is shown
             dataGridView.MakeDoubleBuffered();
             dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView.RowTemplate.Height = Font.ScalePixels(26);

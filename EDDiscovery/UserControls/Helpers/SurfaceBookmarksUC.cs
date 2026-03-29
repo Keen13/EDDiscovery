@@ -70,7 +70,7 @@ namespace EDDiscovery.UserControls
                 dataGridView.RowHeadersDefaultCellStyle.BackColor = ExtendedControls.Theme.Current.GridBorderBack;
 
             //System.Diagnostics.Debug.WriteLine($"Surface UC Lookup for planets '{systemName}'");
-            var lookup = await helist.StarScan2.FindSystemAsync(new SystemClass(systemName), EliteDangerousCore.WebExternalDataLookup.SpanshThenEDSM);
+            var lookup = await helist.StarScan2.FindSystemAsync(new SystemClass(systemName), true);
 
             if (IsClosed())
                 return;

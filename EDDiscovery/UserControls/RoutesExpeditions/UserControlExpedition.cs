@@ -440,7 +440,7 @@ namespace EDDiscovery.UserControls
                 double? disttocur = sys.HasCoordinate && historySystem != null ? sys.Distance(historySystem) : default(double?);
                 row.Cells[CurDist.Index].Value = disttocur.HasValue ? disttocur.Value.ToString("N2") : "";
 
-                var sysnode = await DiscoveryForm.History.StarScan2.FindSystemAsync(sys, lookup);
+                var sysnode = await DiscoveryForm.History.StarScan2.FindSystemAsync(sys, lookup != WebExternalDataLookup.None);
 
                 if (IsClosed)        // because its async, may be called during closedown. stop this
                     return;
@@ -1249,7 +1249,7 @@ namespace EDDiscovery.UserControls
         private void viewSystemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var rows = dataGridView.SelectedRowAndCount(true, true, -1, false);
-            ScanDisplayForm.ShowScanOrMarketForm(this.FindForm(), dataGridView.Rows[rows.Item1].Tag as ISystem, DiscoveryForm.History, forcedlookup: edsmSpanshButton.WebLookup);
+            ScanDisplayForm.ShowScanOrMarketForm(this.FindForm(), dataGridView.Rows[rows.Item1].Tag as ISystem, DiscoveryForm.History, forcedlookup: edsmSpanshButton.WebLookup != WebExternalDataLookup.None);
         }
 
         private void viewOnSpanshToolStripMenuItem_Click(object sender, EventArgs e)
