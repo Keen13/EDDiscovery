@@ -175,7 +175,7 @@ namespace EDDiscovery.UserControls
                         var subbody = bn.ChildBodies.FirstOrDefault();          // we need the belt cluster body, which has the scan, under it
                         bdClass.Append("Belt Cluster");
 
-                        if (subbody?.Scan != null && (!subbody.Scan.IsWebSourced || edsmSpanshButton.IsAnySet))
+                        if (subbody?.Scan != null && (!subbody.Scan.IsWebSourced || edsmSpanshButton.WebLookup))
                         {
                             if (Math.Abs(subbody.Scan.DistanceFromArrivalLS) > 0)
                             {
@@ -191,7 +191,7 @@ namespace EDDiscovery.UserControls
                     }
                 }
                 // must have scan data and either not edsm body or edsm check
-                else if ( bn.Scan != null && (!bn.Scan.IsWebSourced || edsmSpanshButton.IsAnySet))
+                else if ( bn.Scan != null && (!bn.Scan.IsWebSourced || edsmSpanshButton.WebLookup))
                 {
                     if (bn.Scan.IsStar)
                     {
@@ -548,7 +548,7 @@ namespace EDDiscovery.UserControls
                 toolStripJumponiumProgressBar.ToolTipText = toolStripJumponiumProgressBar.Value + " jumponium materials found in system.".Tx();
 
             string ct = systemnode.System.Name;
-            long totalv = systemnode.ScanValue(edsmSpanshButton.IsAnySet) + organicvaluetotal;
+            long totalv = systemnode.ScanValue(edsmSpanshButton.WebLookup) + organicvaluetotal;
             if (totalv > 0)
                 ct += " ~" + totalv.ToString("N0") + " cr";
             SetControlText( ct ); 

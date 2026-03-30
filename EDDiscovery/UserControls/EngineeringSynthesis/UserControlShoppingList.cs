@@ -35,7 +35,7 @@ namespace EDDiscovery.UserControls
         private bool hidePlanetMatsWithNoCapacity;
         private bool showListAvailability;
         private bool showSystemAvailability;
-        private bool useEDSMForSystemAvailability;
+        private bool useWebForSystemAvailability;
         private bool HorizonalSplitContainerPos;
 
         private bool useHistoric = false;
@@ -85,7 +85,7 @@ namespace EDDiscovery.UserControls
             hidePlanetMatsWithNoCapacity = GetSetting(dbHideFullMatsLandedSave, false);
             showListAvailability = GetSetting(dbHighlightAvailableMats, true);
             showSystemAvailability = GetSetting(dbShowSystemAvailability, true);
-            useEDSMForSystemAvailability = GetSetting(dbUseEDSMForSystemAvailability, false);
+            useWebForSystemAvailability = GetSetting(dbUseEDSMForSystemAvailability, false);
             HorizonalSplitContainerPos = GetSetting(dbToggleShoppingListPosition, false);
 
             pictureBoxList.ContextMenuStrip = contextMenuStrip;
@@ -104,7 +104,7 @@ namespace EDDiscovery.UserControls
             PutSetting(dbHideFullMatsLandedSave, hidePlanetMatsWithNoCapacity);
             PutSetting(dbHighlightAvailableMats, showListAvailability);
             PutSetting(dbShowSystemAvailability, showSystemAvailability);
-            PutSetting(dbUseEDSMForSystemAvailability, useEDSMForSystemAvailability);
+            PutSetting(dbUseEDSMForSystemAvailability, useWebForSystemAvailability);
             PutSetting(dbToggleShoppingListPosition, HorizonalSplitContainerPos);
             userControlEngineering.CallCloseDown();
             userControlSynthesis.CallCloseDown();
@@ -124,7 +124,7 @@ namespace EDDiscovery.UserControls
             showAvailableMaterialsInListWhenLandedToolStripMenuItem.Checked = showListAvailability;
             useHistoricMaterialCountsToolStripMenuItem.Checked = useHistoric;
             showSystemAvailabilityOfMaterialsInShoppingListToolStripMenuItem.Checked = showSystemAvailability;
-            useEDSMDataInSystemAvailabilityToolStripMenuItem.Checked = useEDSMForSystemAvailability;
+            useEDSMDataInSystemAvailabilityToolStripMenuItem.Checked = useWebForSystemAvailability;
             SetSplitPosition();
             Display();
         }
@@ -180,7 +180,7 @@ namespace EDDiscovery.UserControls
                 {
                     // tbd spansh - but the right click UI is horrible, when we reengineer it, we will fix
 
-                    last_sn = await DiscoveryForm.History.StarScan2.FindSystemAsync(last_he.System, useEDSMForSystemAvailability);
+                    last_sn = await DiscoveryForm.History.StarScan2.FindSystemAsync(last_he.System, useWebForSystemAvailability);
 
                     if (last_he.Status.IsLandedInShipOrSRV && last_sn != null )       // if found node, and landed
                     {
@@ -223,7 +223,7 @@ namespace EDDiscovery.UserControls
                         }
                         if (!last_he.Status.IsLandedInShipOrSRV && last_sn != null)
                         {
-                            var landables = last_sn.Bodies(b => b.Scan != null && (!b.Scan.IsWebSourced || useEDSMForSystemAvailability) &&
+                            var landables = last_sn.Bodies(b => b.Scan != null && (!b.Scan.IsWebSourced || useWebForSystemAvailability) &&
                                                                  b.Scan.HasMaterials && b.Scan.Materials.ContainsKey(c.Item1.Details.FDName));
                             if (landables.Count() > 0)
                             {
@@ -357,7 +357,7 @@ namespace EDDiscovery.UserControls
 
         private void useEDSMDataInSystemAvailabilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            useEDSMForSystemAvailability = ((ToolStripMenuItem)sender).Checked;
+            useWebForSystemAvailability = ((ToolStripMenuItem)sender).Checked;
             Display();
         }
 

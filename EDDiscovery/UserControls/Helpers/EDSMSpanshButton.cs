@@ -36,9 +36,6 @@ namespace EDDiscovery.UserControls
         }
 
         public bool WebLookup { get { return Checked; } }
-        public bool IsAnySet { get { return Checked; } }
-        public bool IsNoneSet { get { return !Checked; } }
-        public WebExternalDataLookup QualifiedConfigWebLookup { get { return Checked ? EDDConfig.Instance.WebLookup : WebExternalDataLookup.None; } }
     }
 
     public class EDSMSpanshSelectionButton : ExtendedControls.ExtButtonWithNewCheckedListBox

@@ -673,7 +673,7 @@ namespace EDDiscovery.UserControls
 
                 if (systemnode != null)
                 {
-                    int scanned = systemnode.StarPlanetsScanned(edsmSpanshButton.IsAnySet);
+                    int scanned = systemnode.StarPlanetsScanned(edsmSpanshButton.WebLookup);
                     int clusters = systemnode.BeltClusterBodies();
 
                     if (scanned > 0)
@@ -861,7 +861,7 @@ namespace EDDiscovery.UserControls
 
                         // work out if we want to display if we don't have searchresult, as long as not websourced or allow web sourced
 
-                        if (surveyordisplay == false && (!sd.IsWebSourced || edsmSpanshButton.IsAnySet)) 
+                        if (surveyordisplay == false && (!sd.IsWebSourced || edsmSpanshButton.WebLookup)) 
                         {
                             surveyordisplay = (sd.IsLandable && IsSet(CtrlList.isLandable)) ||
                                 matchedlandablewithatmosphere ||

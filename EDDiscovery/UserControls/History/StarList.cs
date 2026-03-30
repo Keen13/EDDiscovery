@@ -395,7 +395,7 @@ namespace EDDiscovery.UserControls
             {
                 string st = sysnode.StarTypesScanned();
                 int stars = sysnode.StarsScanned();
-                int total = sysnode.StarPlanetsScanned(edsmSpanshButton.IsAnySet);      // total with data, include web bodies if we have the tick box on
+                int total = sysnode.StarPlanetsScanned(edsmSpanshButton.WebLookup);      // total with data, include web bodies if we have the tick box on
 
                 infostr = string.Format("{0} Star(s) {1}".Tx(), stars, st);
 
@@ -518,7 +518,7 @@ namespace EDDiscovery.UserControls
             var configweblookup = EDDConfig.Instance.WebLookup;
 
             // no point doing this if config web lookup is off, and if we don't want it
-            if (dataGridViewStarList.FirstDisplayedCell != null && configweblookup != WebExternalDataLookup.None && edsmSpanshButton.IsAnySet)
+            if (dataGridViewStarList.FirstDisplayedCell != null && configweblookup != WebExternalDataLookup.None && edsmSpanshButton.WebLookup)
             {
                 int top = dataGridViewStarList.FirstDisplayedCell.RowIndex;
                 if (top != autoupdaterowstart)

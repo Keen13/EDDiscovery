@@ -132,7 +132,7 @@ namespace EDDiscovery.UserControls
 
                 // we have scan data and either edsm spansh set or no web bordies
 
-                foreach (var body in last_sn.Bodies(x=>x.Scan!=null && (edsmSpanshButton.IsAnySet || !x.Scan.IsWebSourced)))
+                foreach (var body in last_sn.Bodies(x=>x.Scan!=null && (edsmSpanshButton.WebLookup || !x.Scan.IsWebSourced)))
                 {
                     string spclass = body.Scan.IsStar ? body.Scan.StarTypeText : body.Scan.PlanetTypeText;
 
