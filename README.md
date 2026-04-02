@@ -54,8 +54,8 @@ EDDiscovery integrates with our partner Elite 3rd party developer tools:
 * Coriolis
 * ED Shipyard
 * ED Astro
-* EDDN Network : Run by https://edcd.github.io/, this distributes information on shipyards, markets, stations, scans to the EDCD community (EDSM, EDDB, etc).
-* Cannon community.
+* EDDN Network : Run by https://edcd.github.io/, this distributes information on shipyards, markets, stations, scans to the EDCD community (EDSM, Spansh etc).
+* Canonn Plugin to send and get data from the Canonn player group
 
 
 [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/EDDiscovery/EDDiscovery/master/LICENSE.md)
